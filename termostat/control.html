@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+         body{
+            font-family:'Courier New', Courier, monospace;
+            display:flex;
+            justify-content: center;
+            background-color: black;
+        }
+        #box_contener{
+            display:flex;
+            place-content: center;
+          
+           margin-top: 3vh;
+            width: 550px;
+            height: 550px;
+            background-color: rgb(32,33,36);
+            border: 1px solid white;
+        }
+   #inner_box{
+    display:flex;
+            place-content: center;
+          
+           margin-top: 3vh;
+            width: 550px;
+            height: 100px;
+            background-color: rgb(32,33,36);
+    
+   }
+   #settemp{
+    position: absolute;
+    margin-top: 250px;
+        width: 200px;
+        height: 100px;
+        border: 1px solid white;
+        
+   }
+   #settemp h3{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+        border-bottom: 1px solid white;
+        margin-top: -2.5px;
+    } 
+  
+    #settemp h1{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+        margin-top: -2.5px;
+    }
+    #settemp #btn_add{
+            position: absolute;
+
+        width: 50px;
+        height: 50px;
+       font-size: 45px;
+text-align: center;        
+padding-bottom: 40px;
+       margin-left: 210px;
+       margin-top: -98px;
+    }
+    #settemp #btn_rem{
+            position: absolute;
+
+        width: 50px;
+        height: 50px;
+       font-size: 45px;
+text-align: center;        
+padding-bottom: 40px;
+       margin-left: 210px;
+       margin-top: -45px;
+    }
+    #temp{
+        margin-top: 80px;
+        width: 200px;
+        height: 100px;
+        border: 1px solid white;
+        margin-left:10px ;
+    }
+    #temp h3{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+        border-bottom: 1px solid white;
+        margin-top: -2.5px;
+    } 
+    #temp div{
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        border-radius: 10px;
+        margin-left: 150px;
+    }
+
+     #temp h1{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+        margin-top: -6px;
+    }
+    #hume{
+        margin-top: 80px;
+        width: 200px;
+        height: 100px;
+        border: 1px solid white;
+        margin-left:10px ;
+
+    }
+    #hume h3{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+        border-bottom: 1px solid white;
+        margin-top: -2.5px;
+    }
+    #hume div{
+        height: 10px;
+        width: 10px;
+        background-color: green;
+        border-radius: 10px;
+        margin-left: 140px;
+    }
+    #hume h1{
+        display: grid;
+        color: white;
+        width: 200px;
+       text-align: center;
+       margin-top: -6px;
+    }
+    </style>
+</head>
+<body onload="load()">
+    <div id="box_contener">
+        <div id="inner_box">
+        <div id="temp">
+            <h3>Temperature</h3>
+            <div></div>
+            <h1>102°C</h1>
+        </div>
+        <div id="hume">
+            <h3>Humidity</h3>
+            <div></div>
+            <h1>102%</h1>
+        </div>
+    </div>
+        <div id="settemp">
+            <h3>Set Temperature</h3>
+            <div></div>
+            <h1>102°C</h1>
+            <button id="btn_add" onclick="btn_add()">+</button>
+            <button id="btn_rem" onclick="btn_rem()">-</button>
+        </div>
+    </div>
+  
+
+<script>
+        
+        var ws =new WebSocket();
+        import { connect } from "mqtt"
+const client = connect('mqtt://test.mosquitto.org')
+client.on("connect", () => {
+  client.subscribe("presence", (err) => {
+    if (!err) {
+      client.publish("presence", "Hello mqtt");
+    }
+  });
+});
+
+client.on("message", (topic, message) => {
+  // message is Buffer
+  console.log(message.toString());
+  client.end();
+});
+    function load() {
+        ws.onopen() 
+    }
+    function btn_add() {
+        var set_temp_obj ={"temp":document.getElementById()}
+    ws.send(JSON.stringify(set_temp_obj));
+    ws.addEventListener("message",(inf)=>{
+        console.log(inf.data);
+    })
+    }
+   
+</script>
+</body>
+</html>
