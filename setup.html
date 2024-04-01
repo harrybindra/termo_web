@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Up</title>
+  <!-- wifi-->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      background-color: black;
+    }
+
+    #box_contener {
+      display: flex;
+      justify-content: center;
+
+      margin-top: 3vh;
+      width: 500px;
+      height: 450px;
+      background-color: rgb(32, 33, 36);
+
+    }
+
+    #inner_box_1 {
+      position: absolute;
+      margin-top: 25px;
+      border: 1px solid white;
+      width: 300px;
+      height: 400px;
+      background-color: rgb(48, 49, 52);
+      display: grid;
+      place-content: center;
+
+    }
+
+    #text1 {
+      font-family: 'Courier New', Courier, monospace;
+      margin-top: -60px;
+
+    }
+
+    #next1 {
+      font-family: 'Courier New', Courier, monospace;
+      margin-top: 150px;
+
+      width: 200px;
+      height: 50px;
+      font-size: large;
+    }
+
+
+    #inner_box_2 {
+      position: absolute;
+      margin-top: 25px;
+      border: 1px solid white;
+      width: 300px;
+      height: 400px;
+      background-color: rgb(48, 49, 52);
+      display: none;
+      place-content: center;
+
+    }
+
+    #text2 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 100px;
+      margin-left: 50px;
+    }
+
+    #next2 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 300px;
+      margin-left: 50px;
+      width: 200px;
+      height: 50px;
+      font-size: large;
+    }
+
+    #iconwifi {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 105px;
+      margin-left: 130px;
+    }
+
+    #wifissid {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 150px;
+      margin-left: 45px;
+      width: 200px;
+      height: 30px;
+      font-size: large;
+    }
+
+    #wifipass {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 200px;
+      margin-left: 45px;
+      width: 200px;
+      height: 30px;
+      font-size: large;
+
+
+    }
+
+    #inner_box_3 {
+      position: absolute;
+      margin-top: 25px;
+      border: 1px solid white;
+      width: 300px;
+      height: 400px;
+      background-color: rgb(48, 49, 52);
+      display: none;
+      place-content: center;
+
+    }
+
+    #text3 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 100px;
+      margin-left: 50px;
+    }
+
+    #email_3 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 200px;
+      margin-left: 45px;
+      width: 200px;
+      height: 30px;
+      font-size: large;
+    }
+
+    #next3 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 300px;
+
+      margin-left: 50px;
+      width: 200px;
+      height: 50px;
+      font-size: large;
+    }
+
+    #mqtt3 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 80px;
+      margin-left: 50px;
+    }
+
+  
+#temp_data_3{
+  position: absolute;
+  margin-left: 45px;
+  width: 200px;
+      height: 30px;
+      font-size: large;
+  margin-top: 130px;
+}
+
+#relay_3{
+  position: absolute;
+  margin-left: 45px;
+  width: 200px;
+      height: 30px;
+      font-size: large;    
+        margin-top: 180px;
+
+}
+    #inner_box_4 {
+      position: absolute;
+      margin-top: 25px;
+      border: 1px solid white;
+      width: 300px;
+      height: 400px;
+      background-color: rgb(48, 49, 52);
+      display: none;
+      place-content: center;
+
+    }
+
+    #next4 {
+      font-family: 'Courier New', Courier, monospace;
+      position: fixed;
+      margin-top: 300px;
+
+      margin-left: 50px;
+      width: 200px;
+      height: 50px;
+      font-size: large;
+    }
+
+    #error4 {
+
+      position: fixed;
+      margin-top: 250px;
+      font-size: medium;
+      margin-left: 45px;
+    }
+
+    #text4 {
+      text-align: center;
+      margin-top: -160px;
+    }
+  </style>
+  <script>
+
+    // before you start reading my js: 
+    // dont judge me i know i am repeating my code. 
+    // i know i am committing war crime in coding. 
+    // DOM was not working with var so i had to use it. 
+    // i know what you are thing, i can just put script under the document.
+    //  Yes but it is to much work to change it now 🙂 
+
+    // config data 
+    var configdata = {
+      ssid: "",
+      pass: "",
+      mqtt_termo_data: "",
+      mqtt_relay_addr: "",
+    }
+    var box_contener = document.getElementById("box_contener");
+    var inner_box_1 = document.getElementById("inner_box_1");
+    var inner_box_2 = document.getElementById("inner_box_2");
+    var inner_box_3 = document.getElementById("inner_box_3");
+    // change to next window
+    function next1() {
+
+      document.getElementById("inner_box_1").style.display = "none";
+      document.getElementById("inner_box_2").style.display = "grid";
+
+    }
+
+
+    //  save ssid and pass in configdata var 
+    // check if ssid or pass are empty or not
+    // change to next window
+    function next2() {
+
+      configdata.ssid = document.getElementById("wifissid").value;
+      configdata.pass = document.getElementById("wifipass").value;
+      if (configdata.ssid == "" || configdata.pass == "") {
+
+        document.getElementById("wifissid").style.borderColor = "red";
+        document.getElementById("wifipass").style.borderColor = "red";
+      } else {
+        document.getElementById("wifissid").style.borderColor = "none";
+        document.getElementById("wifipass").style.borderColor = "none";
+        document.getElementById("inner_box_2").style.display = "none";
+        document.getElementById("inner_box_3").style.display = "grid";
+      }
+    }
+
+
+    //  save email configdata var 
+    // check if email empty 
+    // change to next window
+    function next3() {
+      configdata.mqtt_termo_data = document.getElementById("temp_data_3").value;
+      configdata.mqtt_relay_addr = document.getElementById("relay_3").value;
+
+      if ( configdata.mqtt_termo_data == "" ||configdata.mqtt_relay_addr =="" ) {
+        document.getElementById("temp_data_3").style.borderColor = "red";
+        document.getElementById("relay_3").style.borderColor = "red";
+      } else {
+      
+
+     
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", 'application/json');
+            var requestOptions = {
+              method: 'POST',
+              headers: myHeaders,
+              body: configdata,
+
+            };
+            //  document.getElementById("error3").innerText="Sending";
+            //  document.getElementById("next3").disabled = true;
+            fetch(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_termo_data=${configdata.mqtt_termo_data}&mqtt_relay_addr=${configdata.mqtt_relay_addr}`, requestOptions)
+              .then(response => response.status)
+              .then((result) => {
+
+                if (result == "OK") {
+                  location.href = "/status";
+                } else {
+                  document.getElementById("next3").disabled = false;
+                }
+
+              })
+              .catch(error => console.log('error', error));
+
+
+
+          
+          
+        }
+    }
+
+    
+
+
+  </script>
+</head>
+
+<body>
+  <div id="box_contener">
+    <div id="inner_box_1">
+      <h1 id="text1">Get Started</h1>
+      <Button id="next1" onclick="next1()">Next</Button>
+    </div>
+
+    <div id="inner_box_2">
+      <h1 id="text2">WiFi</h1>
+      <input type="text" id="wifissid" placeholder="SSID">
+      <input type="password" id="wifipass" placeholder="PASS">
+      <Button id="next2" onclick="next2()">Next</Button>
+    </div>
+
+    <div id="inner_box_3">
+      <h1 id="mqtt3">MQTT:</h1>
+      <input type="text" id="temp_data_3" placeholder="TEMP DATA">
+      <input type="text" id="relay_3" placeholder="RELAY">
+
+      <Button id="next3" onclick="next3()">Next</Button>
+    </div>
+
+
+
+
+
+  </div>
+
+</body>
+
+</html>
