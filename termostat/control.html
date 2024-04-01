@@ -1,198 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
+
     <style>
-         body{
-            font-family:'Courier New', Courier, monospace;
-            display:flex;
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
             justify-content: center;
             background-color: black;
         }
-        #box_contener{
-            display:flex;
+
+        #box_contener {
+            display: flex;
             place-content: center;
-          
-           margin-top: 3vh;
+
+            margin-top: 3vh;
             width: 550px;
             height: 550px;
-            background-color: rgb(32,33,36);
+            background-color: rgb(32, 33, 36);
             border: 1px solid white;
         }
-   #inner_box{
-    display:flex;
+
+        #inner_box {
+            display: flex;
             place-content: center;
-          
-           margin-top: 3vh;
+
+            margin-top: 3vh;
             width: 550px;
             height: 100px;
-            background-color: rgb(32,33,36);
-    
-   }
-   #settemp{
-    position: absolute;
-    margin-top: 250px;
-        width: 200px;
-        height: 100px;
-        border: 1px solid white;
-        
-   }
-   #settemp h3{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-        border-bottom: 1px solid white;
-        margin-top: -2.5px;
-    } 
-  
-    #settemp h1{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-        margin-top: -2.5px;
-    }
-    #settemp #btn_add{
+            background-color: rgb(32, 33, 36);
+
+        }
+
+        #settemp {
+            position: absolute;
+            margin-top: 250px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid white;
+
+        }
+
+        #settemp h3 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            border-bottom: 1px solid white;
+            margin-top: -2.5px;
+        }
+
+        #settemp h1 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            margin-top: -2.5px;
+        }
+
+        #settemp #btn_add {
             position: absolute;
 
-        width: 50px;
-        height: 50px;
-       font-size: 45px;
-text-align: center;        
-padding-bottom: 40px;
-       margin-left: 210px;
-       margin-top: -98px;
-    }
-    #settemp #btn_rem{
+            width: 50px;
+            height: 50px;
+            font-size: 45px;
+            text-align: center;
+            padding-bottom: 40px;
+            margin-left: 210px;
+            margin-top: -98px;
+        }
+
+        #settemp #btn_rem {
             position: absolute;
 
-        width: 50px;
-        height: 50px;
-       font-size: 45px;
-text-align: center;        
-padding-bottom: 40px;
-       margin-left: 210px;
-       margin-top: -45px;
-    }
-    #temp{
-        margin-top: 80px;
-        width: 200px;
-        height: 100px;
-        border: 1px solid white;
-        margin-left:10px ;
-    }
-    #temp h3{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-        border-bottom: 1px solid white;
-        margin-top: -2.5px;
-    } 
-    #temp div{
-        height: 10px;
-        width: 10px;
-        background-color: green;
-        border-radius: 10px;
-        margin-left: 150px;
-    }
+            width: 50px;
+            height: 50px;
+            font-size: 45px;
+            text-align: center;
+            padding-bottom: 40px;
+            margin-left: 210px;
+            margin-top: -45px;
+        }
 
-     #temp h1{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-        margin-top: -6px;
-    }
-    #hume{
-        margin-top: 80px;
-        width: 200px;
-        height: 100px;
-        border: 1px solid white;
-        margin-left:10px ;
+        #temp {
+            margin-top: 80px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid white;
+            margin-left: 10px;
+        }
 
-    }
-    #hume h3{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-        border-bottom: 1px solid white;
-        margin-top: -2.5px;
-    }
-    #hume div{
-        height: 10px;
-        width: 10px;
-        background-color: green;
-        border-radius: 10px;
-        margin-left: 140px;
-    }
-    #hume h1{
-        display: grid;
-        color: white;
-        width: 200px;
-       text-align: center;
-       margin-top: -6px;
-    }
+        #temp h3 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            border-bottom: 1px solid white;
+            margin-top: -2.5px;
+        }
+
+        #temp div {
+            height: 10px;
+            width: 10px;
+            background-color: green;
+            border-radius: 10px;
+            margin-left: 150px;
+        }
+
+        #temp h1 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            margin-top: -6px;
+        }
+
+        #hume {
+            margin-top: 80px;
+            width: 200px;
+            height: 100px;
+            border: 1px solid white;
+            margin-left: 10px;
+
+        }
+
+        #hume h3 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            border-bottom: 1px solid white;
+            margin-top: -2.5px;
+        }
+
+        #hume div {
+            height: 10px;
+            width: 10px;
+            background-color: green;
+            border-radius: 10px;
+            margin-left: 140px;
+        }
+
+        #hume h1 {
+            display: grid;
+            color: white;
+            width: 200px;
+            text-align: center;
+            margin-top: -6px;
+        }
+        #btn_save{
+            margin-top: 400px;
+            position: absolute;
+            width: 201px;
+            height: 80px;
+            border: 1px solid white;
+            margin-left: -376px;
+            cursor: pointer;
+        }
     </style>
 </head>
+
 <body onload="load()">
     <div id="box_contener">
         <div id="inner_box">
-        <div id="temp">
-            <h3>Temperature</h3>
-            <div></div>
-            <h1>102°C</h1>
+            <div id="temp">
+                <h3>Temperature</h3>
+                <div></div>
+                <h1 id="temp_h1">...</h1>
+            </div>
+            <div id="hume">
+                <h3>Humidity</h3>
+                <div></div>
+                <h1 id="hume_h1">...</h1>
+            </div>
         </div>
-        <div id="hume">
-            <h3>Humidity</h3>
-            <div></div>
-            <h1>102%</h1>
-        </div>
-    </div>
         <div id="settemp">
             <h3>Set Temperature</h3>
             <div></div>
-            <h1>102°C</h1>
+            <h1 id="set_temp_h1">...</h1>
             <button id="btn_add" onclick="btn_add()">+</button>
             <button id="btn_rem" onclick="btn_rem()">-</button>
         </div>
+
     </div>
-  
-
-<script>
+    <div>
         
-        var ws =new WebSocket();
-        import { connect } from "mqtt"
-const client = connect('mqtt://test.mosquitto.org')
-client.on("connect", () => {
-  client.subscribe("presence", (err) => {
-    if (!err) {
-      client.publish("presence", "Hello mqtt");
-    }
-  });
-});
+        <button id="btn_save" onclick="btn_save()">Save</button>
+    </div>
 
-client.on("message", (topic, message) => {
-  // message is Buffer
-  console.log(message.toString());
-  client.end();
-});
-    function load() {
-        ws.onopen() 
-    }
-    function btn_add() {
-        var set_temp_obj ={"temp":document.getElementById()}
-    ws.send(JSON.stringify(set_temp_obj));
-    ws.addEventListener("message",(inf)=>{
-        console.log(inf.data);
-    })
-    }
-   
-</script>
+
+    <script>
+
+
+        var data = {
+            temp: 25,
+            hume: "",
+        }
+        var set_data = {
+            set_temp: data.temp
+        }
+        var set_temp_h1 = document.getElementById("set_temp_h1");
+        var temp_h1 = document.getElementById("temp_h1");
+        var hume_h1 = document.getElementById("hume_h1");
+            console.log(document.getElementById("settemp").childNodes[4]); 
+        console.log(set_data.set_temp);
+        var gateway = `ws://${window.location.hostname}/ws`;
+        var ws = new WebSocket(gateway);
+        function load() {
+            ws.onopen()
+        }
+        ws.onmessage((ans) => {
+            var myObj = JSON.parse(ans.data);
+            data.temp = myObj.temp;
+            data.hume = myObj.hume;
+            temp_h1.innerText=data.temp+"°C";
+            hume_h1.innerText =data.hume+"%";
+
+        })
+        function btn_add() {
+            set_data.set_temp += 1;
+            set_temp_h1.innerText= set_data.set_temp+"°C";
+           
+        }
+        function btn_rem() {
+            set_data.set_temp -= 1;
+            set_temp_h1.innerText= set_data.set_temp+"°C";
+           
+        }
+        function btn_save() {
+            fetch(`/temp_set?set_temp=${set_data.set_temp}`,{method: 'POST'}).then((ans)=>{
+               return ans.status;
+            }).then((ans)=>{})
+        }
+
+    </script>
 </body>
+
 </html>
