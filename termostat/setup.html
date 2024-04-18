@@ -111,7 +111,7 @@
       width: 300px;
       height: 400px;
       background-color: rgb(48, 49, 52);
-      display: none;
+      display: grid;
       place-content: center;
 
     }
@@ -130,7 +130,7 @@
       position: fixed;
       margin-top: 300px;
 
-      margin-left: 50px;
+      margin-left: 45px;
       width: 200px;
       height: 50px;
       font-size: large;
@@ -180,6 +180,13 @@
   position: absolute;
  
         margin-top: 210px;
+
+}
+#temp_set{  
+  
+  position: absolute;
+ 
+        margin-top: 250px;
 
 }
     #inner_box_4 {
@@ -237,6 +244,7 @@
       ha_mqtt_pass:"",
       mqtt_termo_data: "",
       mqtt_relay_addr: "",
+      mqtt_termo_data_set:"",
     }
     var box_contener = document.getElementById("box_contener");
     var inner_box_1 = document.getElementById("inner_box_1");
@@ -279,15 +287,18 @@
       configdata.ha_mqtt_pass = document.getElementById("ha_mqtt_pass").value;
       configdata.mqtt_termo_data = document.getElementById("temp_data_3").value;
       configdata.mqtt_relay_addr = document.getElementById("relay_3").value;
-
+      configdata.mqtt_termo_data_set = document.getElementById("temp_set").value;
       if ( 
       configdata.mqtt_termo_data == "" ||
       configdata.mqtt_relay_addr =="" ||
       configdata.ha_mqtt_user ==""||
-      configdata.ha_mqtt_pass =="") {
-        document.getElementById("ha_ip").style.borderColor = "red";
+      configdata.ha_mqtt_pass ==""||
+      configdata.mqtt_termo_data_set=="") {
+        document.getElementById("ha_mqtt_user").style.borderColor = "red";
+        document.getElementById("ha_mqtt_pass").style.borderColor = "red";
         document.getElementById("temp_data_3").style.borderColor = "red";
         document.getElementById("relay_3").style.borderColor = "red";
+        document.getElementById("temp_set").style.borderColor = "red";
       } else {
       
       
@@ -299,7 +310,7 @@
 
             };
             
-            const url = decodeURI(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_termo_data=${configdata.mqtt_termo_data}&mqtt_relay_addr=${configdata.mqtt_relay_addr}&ha_mqtt_user=${configdata.ha_mqtt_user}&ha_mqtt_pass=${configdata.ha_mqtt_pass}`);
+            const url = decodeURI(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_termo_data=${configdata.mqtt_termo_data}&mqtt_relay_addr=${configdata.mqtt_relay_addr}&ha_mqtt_user=${configdata.ha_mqtt_user}&ha_mqtt_pass=${configdata.ha_mqtt_pass}&mqtt_termo_data_set=${configdata.mqtt_termo_data_set}`);
 
             console.log(requestOptions.body)
             //  document.getElementById("error3").innerText="Sending";
@@ -351,7 +362,7 @@
       <input type="text" id="ha_mqtt_pass" placeholder="MQTT PASS">
       <input type="text"  id="temp_data_3" placeholder="TEMP DATA">
       <input type="text"  id="relay_3" placeholder="RELAY">
-
+      <input type="text"  id="temp_set" placeholder="TEMP SET">
       <Button id="next3" onclick="next3()">Next</Button>
     </div>
 
