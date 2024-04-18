@@ -213,12 +213,14 @@
         function load() {
             ws.onopen()
         }
-        ws.onmessage((ans) => {
+        ws.addEventListener("message",(ans) => {
             var myObj = JSON.parse(ans.data);
             data.temp = myObj.temp;
             data.hume = myObj.hume;
             temp_h1.innerText=data.temp+"°C";
             hume_h1.innerText =data.hume+"%";
+            console.log(data);
+
 
         })
         function btn_add() {

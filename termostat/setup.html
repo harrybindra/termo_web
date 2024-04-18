@@ -92,23 +92,14 @@
     }
 
     #wifissid {
-      font-family: 'Courier New', Courier, monospace;
       position: fixed;
       margin-top: 150px;
-      margin-left: 45px;
-      width: 200px;
-      height: 30px;
-      font-size: large;
     }
 
     #wifipass {
-      font-family: 'Courier New', Courier, monospace;
       position: fixed;
       margin-top: 200px;
-      margin-left: 45px;
-      width: 200px;
-      height: 30px;
-      font-size: large;
+
 
 
     }
@@ -132,15 +123,7 @@
       margin-left: 50px;
     }
 
-    #email_3 {
-      font-family: 'Courier New', Courier, monospace;
-      position: fixed;
-      margin-top: 200px;
-      margin-left: 45px;
-      width: 200px;
-      height: 30px;
-      font-size: large;
-    }
+
 
     #next3 {
       font-family: 'Courier New', Courier, monospace;
@@ -156,27 +139,47 @@
     #mqtt3 {
       font-family: 'Courier New', Courier, monospace;
       position: fixed;
-      margin-top: 80px;
+      margin-top: 30px;
       margin-left: 50px;
     }
 
-  
-#temp_data_3{
-  position: absolute;
-  margin-left: 45px;
+   input {
+    margin-left: 45px;
   width: 200px;
-      height: 30px;
-      font-size: large;
-  margin-top: 130px;
+  height: 30px;
+  color:rgb(113,113,113);
+  font-size: large;
+  background-color: transparent;
+    border: none;
+    border-bottom: 2px solid rgb(0, 0, 0);
+   }
+   input:focus{
+    outline: none;
+    border-bottom: 2px solid rgba(0, 255, 21, 0.507);
+   }
+
+#ha_mqtt_user{
+
+  position: absolute;
+  margin-top: 80px;
+}
+#ha_mqtt_pass{
+  position: absolute;
+  margin-top: 120px;
 }
 
-#relay_3{
+#temp_data_3{
+  
   position: absolute;
-  margin-left: 45px;
-  width: 200px;
-      height: 30px;
-      font-size: large;    
-        margin-top: 180px;
+
+  margin-top: 170px;
+}
+
+#relay_3{  
+  
+  position: absolute;
+ 
+        margin-top: 210px;
 
 }
     #inner_box_4 {
@@ -214,6 +217,8 @@
       text-align: center;
       margin-top: -160px;
     }
+
+
   </style>
   <script>
 
@@ -228,6 +233,8 @@
     var configdata = {
       ssid: "",
       pass: "",
+      ha_mqtt_user:"",
+      ha_mqtt_pass:"",
       mqtt_termo_data: "",
       mqtt_relay_addr: "",
     }
@@ -268,27 +275,36 @@
     // check if email empty 
     // change to next window
     function next3() {
+      configdata.ha_mqtt_user = document.getElementById("ha_mqtt_user").value;
+      configdata.ha_mqtt_pass = document.getElementById("ha_mqtt_pass").value;
       configdata.mqtt_termo_data = document.getElementById("temp_data_3").value;
       configdata.mqtt_relay_addr = document.getElementById("relay_3").value;
 
-      if ( configdata.mqtt_termo_data == "" ||configdata.mqtt_relay_addr =="" ) {
+      if ( 
+      configdata.mqtt_termo_data == "" ||
+      configdata.mqtt_relay_addr =="" ||
+      configdata.ha_mqtt_user ==""||
+      configdata.ha_mqtt_pass =="") {
+        document.getElementById("ha_ip").style.borderColor = "red";
         document.getElementById("temp_data_3").style.borderColor = "red";
         document.getElementById("relay_3").style.borderColor = "red";
       } else {
       
-
-     
+      
             var myHeaders = new Headers();
-            myHeaders.append("Content-Type", 'application/json');
             var requestOptions = {
               method: 'POST',
+              body:configdata,
               headers: myHeaders,
-              body: configdata,
 
             };
+            
+            const url = decodeURI(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_termo_data=${configdata.mqtt_termo_data}&mqtt_relay_addr=${configdata.mqtt_relay_addr}&ha_mqtt_user=${configdata.ha_mqtt_user}&ha_mqtt_pass=${configdata.ha_mqtt_pass}`);
+
+            console.log(requestOptions.body)
             //  document.getElementById("error3").innerText="Sending";
             //  document.getElementById("next3").disabled = true;
-            fetch(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_termo_data=${configdata.mqtt_termo_data}&mqtt_relay_addr=${configdata.mqtt_relay_addr}`, requestOptions)
+            fetch(url, requestOptions)
               .then(response => response.status)
               .then((result) => {
 
@@ -330,8 +346,11 @@
 
     <div id="inner_box_3">
       <h1 id="mqtt3">MQTT:</h1>
-      <input type="text" id="temp_data_3" placeholder="TEMP DATA">
-      <input type="text" id="relay_3" placeholder="RELAY">
+      
+      <input type="text"  id="ha_mqtt_user" placeholder="MQTT USER NAME">
+      <input type="text" id="ha_mqtt_pass" placeholder="MQTT PASS">
+      <input type="text"  id="temp_data_3" placeholder="TEMP DATA">
+      <input type="text"  id="relay_3" placeholder="RELAY">
 
       <Button id="next3" onclick="next3()">Next</Button>
     </div>
