@@ -170,7 +170,7 @@
   margin-top: 130px;
 }
 
-#relay_3{
+#relay_name_3{
   position: absolute;
   margin-left: 45px;
   width: 200px;
@@ -228,7 +228,7 @@
     var configdata = {
       ssid: "",
       pass: "",
-      mqtt_relay_addr: "",
+      relay_name_3: "",
     }
     var box_contener = document.getElementById("box_contener");
     var inner_box_1 = document.getElementById("inner_box_1");
@@ -267,10 +267,10 @@
     // check if email empty 
     // change to next window
     function next3() {
-      configdata.mqtt_relay_addr = document.getElementById("relay_3").value;
+      configdata.relay_name_3 = document.getElementById("relay_name_3").value;
 
-      if (configdata.mqtt_relay_addr =="" ) {
-        document.getElementById("relay_3").style.borderColor = "red";
+      if (configdata.relay_name_3 =="" ) {
+        document.getElementById("relay_name_3").style.borderColor = "red";
       } else {
       
 
@@ -285,7 +285,7 @@
             };
             //  document.getElementById("error3").innerText="Sending";
             //  document.getElementById("next3").disabled = true;
-            fetch(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&mqtt_relay_addr=${configdata.mqtt_relay_addr}`, requestOptions)
+            fetch(`/config_setup?ssid=${configdata.ssid}&pass=${configdata.pass}&rely_name=${configdata.relay_name_3}`, requestOptions)
               .then(response => response.status)
               .then((result) => {
 
@@ -326,8 +326,8 @@
     </div>
 
     <div id="inner_box_3">
-      <h1 id="mqtt3">MQTT:</h1>
-      <input type="text" id="relay_3" placeholder="RELAY">
+      <h1 id="mqtt3">Rely Name:</h1>
+      <input type="text" id="relay_name_3" placeholder="Rely Name">
 
       <Button id="next3" onclick="next3()">Next</Button>
     </div>
