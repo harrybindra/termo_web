@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Relay</title>
+    <style> body {
+        font-family: 'Courier New', Courier, monospace;
+        display: flex;
+        justify-content: center;
+        background-color: black;
+      }
+      
+
+      #box_contener {
+        display: flex;
+        justify-content: center;
+  
+        margin-top: 3vh;
+        width: 500px;
+        height: 450px;
+        background-color: rgb(32, 33, 36);
+  
+      }    #inner_box_1 {
+      position: absolute;
+      margin-top: 25px;
+      border: 1px solid white;
+      width: 300px;
+      height: 400px;
+      background-color: rgb(48, 49, 52);
+      display: grid;
+      place-content: center;
+
+
+    }
+    #search_rely_btn{
+      margin-top: -350px; 
+      margin-left: 50px;
+      width: 100px;
+      height: 40px;
+    }
+    #rely_list_contener{
+        border: 1px solid white;
+        margin-top: 60px;
+      width: 200px;
+      height: 300px;
+      overflow-x: scroll;  
+    }
+    #rely_list_contener::-webkit-scrollbar
+    {
+        width: 0.5px; 
+          height: 0.5px;
+        background-color: aliceblue;
+
+    }
+    
+    .rely{
+        border: 1px solid white;
+        margin-top: 10px;  
+        margin-left: 9.5px;
+        width: 180px;
+      height: 50px; 
+      cursor: pointer;
+      
+    }
+    .rely h2{
+color: white;
+margin-top: 10px;
+margin-left: 10px;
+font-size: 15px;
+    }
+   #pop_up{
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border: 1px solid white;
+    background-color:rgb(32, 33, 36);
+    z-index: 10;
+    margin-top: 10%;
+    display: none;
+      place-content: center;
+   }
+   #pop_up h3{
+    color: white;
+   }
+   #overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.623);
+    z-index: 10;
+    display: none;
+   }
+    </style>
+    
+</head>
+<body>
+    <div id="overlay">
+       
+    </div>
+    <div id="pop_up">
+        
+        
+    </div>
+    <div id="box_contener">
+
+        <div id="inner_box_1">
+    
+            <div id="rely_list_contener">
+              
+            
+            </div> 
+            <button id="search_rely_btn" onclick="Search()">Search</button>
+        </div>
+    </div>
+    
+    <script>
+      var pop_up =  document.getElementById("pop_up");
+            var overlay =  document.getElementById("overlay");
+        var rely_list="";   
+    
+        function Search() {
+            fetch("/get_rely_list").then((ans)=>{
+                console.log();
+                return ans.text();
+            }).then((ans)=>{
+                rely_list = JSON.parse(ans);
+                console.log(ans);   rely_list.map((veliu,index)=>{
+                var name = veliu.name;
+                //
+                document.getElementById("rely_list_contener").insertAdjacentHTML("afterbegin",
+                `<div class="rely" onclick="addedRely(${index})">
+                    <h2>${name}</h2>
+                </div>`
+            );
+            })
+            })
+          
+        }
+       
+        function addedRely(nom){
+         
+            var name = rely_list[nom].name;
+            pop_up.style.display = "grid";
+            overlay.style.display="block";
+        pop_up.insertAdjacentHTML("afterbegin","<h3>Sending...</h3>")
+         
+         
+            fetch(`/set_rely?name=${name}&index=${nom}`).then((ans)=>{
+
+                console.log(ans.status)
+                return ans.status
+            }).then((ans)=>{
+                if (ans == 200) {
+                    
+                pop_up.childNodes[0].remove();
+                pop_up.insertAdjacentHTML("afterbegin","<h3>Done</h3>")
+                location.href = "/status";
+                }else{
+                   
+                pop_up.childNodes[0].remove();
+                pop_up.insertAdjacentHTML("afterbegin","<h3>Error</h3>") 
+                
+                }
+            }).catch((ans) =>{
+                pop_up.childNodes[0].remove();
+                pop_up.insertAdjacentHTML("afterbegin","<h3>Error</h3>")
+            })
+            console.log(name);
+    }
+    </script>
+</body>
+</html>

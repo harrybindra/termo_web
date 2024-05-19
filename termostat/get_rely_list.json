@@ -1,0 +1,21 @@
+[ {
+    "name":"bedroomrely",
+    "type":"rely",
+    "mac":"00-B0-D0-63-C2-26",
+    "ip":"198.186.0.10",
+    "actions":["/status","/ch_status","/available"]
+},
+{
+    "name":"bedroomrely",
+    "type":"rely",
+    "mac":"00-B0-D0-63-C2-26",
+    "ip":"198.186.0.10",
+    "actions":["/status","/ch_status","/available"]
+},
+{
+    "name":"bedroomrely",
+    "type":"rely",
+    "mac":"00-B0-D0-63-C2-26",
+    "ip":"198.186.0.10",
+    "actions":["/status","/ch_status","/available"]
+}]
